@@ -1,0 +1,8 @@
+<html>
+<body>
+    {% for profile in profiles %}
+        <h1>{{ profile.name}}</h1>
+        <p> By {{ profile.user }} on {{ profile.date_created }} </p>
+    {% endfor %}
+</body>
+</html>
