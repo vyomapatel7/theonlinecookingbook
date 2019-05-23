@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'book'
+    'book',
 ]
 
 MIDDLEWARE = [
@@ -119,3 +119,5 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
+MEDIA_ROOT = '/Users/vyoma/litgproject/profile_pics/'
+MEDIA_URL = '/profile_pics/'

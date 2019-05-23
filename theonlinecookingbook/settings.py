@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'book',
+    'users.apps.UsersConfig',
 ]
 
 MIDDLEWARE = [
@@ -119,3 +120,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+AUTH_USER_MODEL = 'users.CustomUser'
+
+MEDIA_ROOT = '/users/vyoma/litgproject/profile_pics/'
+MEDIA_URL = '/profile_pics/'
