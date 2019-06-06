@@ -26,14 +26,14 @@ def home(request):
 
 def about(request):
     context = {
-        'profiles': profiles
+        'profiles': profile
     }
     return render(request, 'book/about.html', context)
 
-def profile(request):
-    profile = Profile.objects.all()
+def profile(request, id):
+    profile = Profile.objects.get(id=id)
     context = {
-        'profiles': profiles
+        'profile': profile
     }
     return render(request, 'book/profile.html', context)
 

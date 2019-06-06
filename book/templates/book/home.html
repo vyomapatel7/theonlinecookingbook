@@ -3,7 +3,7 @@
 <html>
 <body>
     {% for profile in profiles %}
-        <p> By <a href="/profile/"> {{ profile.user }} </a> on {{ profile.created_date }} </p>
+        <p> By <a href="{% url 'profile' id=profile.id %}"> {{ profile.user }} </a> on {{ profile.created_date }} </p>
         <p> About me {{ profile.bio }} </p>
         <p> Based in {{ profile.location }} </p>
         <p> <img src="{{ profile.image.url }}" /> </p>

@@ -1,11 +1,9 @@
 <html>
 <body>
-    {% for profile in profiles %}
         <h1>{{ profile.name}}</h1>
         <p> By {{ profile.user }} on {{ profile.created_date }} </p>
         <p> About me {{ profile.bio }} </p>
         <p> Based in {{ profile.location }} </p>
         <p> <img src="{{ profile.image.url }}" /> </p>
-    {% endfor %}
 </body>
 </html>

@@ -15,4 +15,6 @@ urlpatterns = [
 	name='registration_create_profile'),
 	path('profiles/<slug>/edit/',
 	views.edit_profile, name='edit_profile'),
+	path('profiles/<id>/',
+	views.profile, name='profile'),
 ]
