@@ -2,6 +2,8 @@ from django.urls import path
 from . import views
 from django.urls import path, include
 from book.backends import MyRegistrationView
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('', views.home, name='book-home'),
@@ -17,4 +19,4 @@ urlpatterns = [
 	views.edit_profile, name='edit_profile'),
 	path('profiles/<id>/',
 	views.profile, name='profile'),
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

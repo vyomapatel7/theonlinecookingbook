@@ -1,0 +1,22 @@
+body {
+  background-color: white;
+  padding-left: 15px;
+  font-size: 15px;
+}
+
+h1 {
+  color: #ff0000;
+  text-align: center;
+}
+
+p {
+  font-family: verdana;
+  font-size: 12px;
+
+
+.page-header {
+    background-color: #C25100;
+    margin-top: 0;
+    padding: 20px 20px 20px 40px;
+}
+

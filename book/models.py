@@ -8,7 +8,7 @@ from django.db import models
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    image = models.ImageField(default='default.jpg', upload_to='profile_pics') 
+    image = models.ImageField(default='default.jpg', upload_to='profile_pics')
     created_date = models.DateTimeField(default=timezone.now)
     bio = models.TextField(max_length=500, blank=True)
     location = models.CharField(max_length=30, blank=True)
