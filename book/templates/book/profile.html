@@ -4,6 +4,7 @@
         <p> By {{ profile.user }} on {{ profile.created_date }} </p>
         <p> About me {{ profile.bio }} </p>
         <p> Based in {{ profile.location }} </p>
+        <a href="{% url 'edit_profile' id=profile.id %}"> Edit me! </a>
         <p> <img src="{{ profile.image.url }}", style= "width:100px;"/> </p>
 </body>
 </html>

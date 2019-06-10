@@ -37,18 +37,19 @@ def profile(request, id):
     }
     return render(request, 'book/profile.html', context)
 
-def edit_profile(request, slug):
+def edit_profile(request, id):
     # grab the object...
-    profile = Profile.objects.get(slug=slug)
+    profile = Profile.objects.get(id=id)
     # set the form we're using...
     form_class = ProfileForm
     if request.method == 'POST':
     # grab the data from the submitted form
-        form = form_class(data=request.POST, instance=profile)
-        if form.is_valid():
-            # save the new data
-            form.save()
-            return redirect('profile_detail', slug=profile.slug)
+        form = form_class(request.POST)
+        if Profile.objects.filter(user=request.user).exists():
+                if form.is_valid():
+                    # save the new data
+                    profile = form.save(commit=False)
+                    return redirect('home')
 
     # otherwise just create the form
     else:
@@ -67,9 +68,7 @@ def create_profile(request):
     # grab the data from the submitted form and apply to
     # the form
         form = form_class(request.POST)
-        if profile.object.get(user=request.user).exists():
-            return True
-            profile = form.create()
+        if Profile.objects.filter(user=request.user).exists():
             if form.is_valid():
             # create an instance but do not save yet
                 profile = form.save(commit=False)
@@ -78,13 +77,11 @@ def create_profile(request):
                 # save the object
                 profile.save()
                 # redirect to our newly created thing
-                return redirect('profile_detail')
+                return redirect('home')
                 # otherwise just create the form
     else:
         form = form_class()
 
     return render(request, 'book/create_profile.html', {
-            'form': form,
+        'form': form,
     })
-
-
