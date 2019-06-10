@@ -67,14 +67,11 @@ def create_profile(request):
     if request.method == 'POST':
     # grab the data from the submitted form and apply to
     # the form
-        form = form_class(request.POST)
+        form = form_class(request.POST, instance=profile)
         if Profile.objects.filter(user=request.user).exists():
             if form.is_valid():
-            # create an instance but do not save yet
                 profile = form.save(commit=False)
-                # set the additional details
                 profile.user = request.user
-                # save the object
                 profile.save()
                 # redirect to our newly created thing
                 return redirect('home')
