@@ -45,11 +45,10 @@ def edit_profile(request, id):
     if request.method == 'POST':
     # grab the data from the submitted form
         form = form_class(request.POST)
-        if Profile.objects.filter(user=request.user).exists():
+        if not Profile.objects.filter(user=request.user).exists():
                 if form.is_valid():
-                    # save the new data
                     profile = form.save(commit=False)
-                    return redirect('home')
+                    return redirect('edit_profile', kwargs={'id': request.user.id})
 
     # otherwise just create the form
     else:
@@ -67,12 +66,12 @@ def create_profile(request):
     if request.method == 'POST':
     # grab the data from the submitted form and apply to
     # the form
-        form = form_class(request.POST, instance=profile)
+        form = form_class(request.POST)
         if Profile.objects.filter(user=request.user).exists():
-            if form.is_valid():
-                profile = form.save(commit=False)
-                profile.user = request.user
-                profile.save()
+                if form.is_valid():
+                        profile = form.save(commit=False)
+                        profile.user = request.user
+                        profile.save()
                 # redirect to our newly created thing
                 return redirect('home')
                 # otherwise just create the form
