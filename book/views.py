@@ -38,23 +38,22 @@ def profile(request, id):
     return render(request, 'book/profile.html', context)
 
 def edit_profile(request, id):
-    # grab the object...
     profile = Profile.objects.get(id=id)
-    # set the form we're using...
     form_class = ProfileForm
     if request.method == 'POST':
     # grab the data from the submitted form
-        form = form_class(request.POST)
-        if not Profile.objects.filter(user=request.user).exists():
+        form = form_class(request.POST, instance=profile)
+        if Profile.objects.filter(user=request.user).exists():
                 if form.is_valid():
                     profile = form.save(commit=False)
-                    return redirect('edit_profile', kwargs={'id': request.user.id})
+                    profile.user = request.user
+                    profile.save()
+                    return redirect('home')
 
     # otherwise just create the form
     else:
         form = form_class(instance=profile)
 
-    # and render the template
     return render(request, 'book/edit_profile.html', {
         'profile': profile,
         'form': form,
@@ -62,22 +61,18 @@ def edit_profile(request, id):
 
 def create_profile(request):
     form_class = ProfileForm
-    # if we're coming from a submitted form, do this
     if request.method == 'POST':
-    # grab the data from the submitted form and apply to
-    # the form
         form = form_class(request.POST)
         if Profile.objects.filter(user=request.user).exists():
                 if form.is_valid():
-                        profile = form.save(commit=False)
-                        profile.user = request.user
-                        profile.save()
-                # redirect to our newly created thing
-                return redirect('home')
-                # otherwise just create the form
+                    profile = form.save(commit=False)
+                    profile.user = request.user()
+                    profile.save()
+                    return redirect('home')
     else:
         form = form_class()
 
     return render(request, 'book/create_profile.html', {
+        'profile': profile,
         'form': form,
     })
