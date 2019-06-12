@@ -60,9 +60,10 @@ def edit_profile(request, id):
     })
 
 def create_profile(request):
+    profile = None
     form_class = ProfileForm
     if request.method == 'POST':
-        form = form_class(request.POST)
+        form = form_class(request.POST, instance=profile)
         if Profile.objects.filter(user=request.user).exists():
                 if form.is_valid():
                     profile = form.save(commit=False)
@@ -70,9 +71,9 @@ def create_profile(request):
                     profile.save()
                     return redirect('home')
     else:
-        form = form_class()
+        form = form_class(instance=profile)
 
     return render(request, 'book/create_profile.html', {
-        'profile': profile,
         'form': form,
+        'profile': profile,
     })
