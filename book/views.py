@@ -61,15 +61,19 @@ def edit_profile(request, id):
 
 def create_profile(request):
     profile = None
+    if Profile.objects.filter(user=request.user).exists():
+        profile = Profile.objects.get(user=request.user)
     form_class = ProfileForm
     if request.method == 'POST':
         form = form_class(request.POST, instance=profile)
         if Profile.objects.filter(user=request.user).exists():
-                if form.is_valid():
-                    profile = form.save(commit=False)
-                    profile.user = request.user()
-                    profile.save()
-                    return redirect('home')
+            profile = Profile.objects.get(user=request.user)
+            return redirect(reverse('edit_profile', kwargs={'id': profile.id }))
+        if form.is_valid():
+            profile = form.save(commit=False)
+            profile.user = request.user()
+            profile.save()
+            return redirect('home')
     else:
         form = form_class(instance=profile)
 
