@@ -3,9 +3,9 @@
 <html>
 <head>
     {% if title %}
-        <title>Django Blog - {{ title }}</title>
+        <title>Online Cooking Book - {{ title }}</title>
     {% else %}
-        <title>Django Blog</title>
+        <title>Online Cooking Book</title>
     {% endif %}
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
@@ -16,7 +16,7 @@
 		<h1 class="page-header">The Online Cooking Book
 		</h1>
 
-		<nav>
+		<nav class=nav>
 			<ul>
 				<li><a href="{% url 'home' %}">Home</a></li>
 				<li><a href="{% url 'about' %}">About</a></li>

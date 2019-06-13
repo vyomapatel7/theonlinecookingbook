@@ -1,17 +1,55 @@
-body {
-  background-color: white;
-  padding-left: 15px;
-  font-size: 15px;
+body{
+    background-color:#f4f4f4;
+    padding-left: 15px;
+    font-size: 15px;
 }
 
-h1 {
-  color: #ff0000;
-  text-align: center;
+h1{
+    text-align: center;
+    background-color: orange;
+    color: white; 
+    padding: 50px;
+    font-family: lobster;
+
 }
 
-p {
-  font-family: verdana;
-  font-size: 12px;
+.nav ul{
+    background-color: #ffcc5f;
+    text-align: center;
+    padding: 0;
+    color: #ff6f69;
+    width: auto;
+    height: 50px;
+    margin: 10 auto;
+}
+
+.nav li{
+    font-size:18px;
+    display: inline;
+    float:left;
+    margin-right: 20px;
+}
+
+.nav a{
+  text-decoration: none;
+  color: #444;
+  display: inline;
+  transition: .4s background-color;
+}
+
+.nav a:hover {
+  background-color: #96ceb4;
+}
+ 
+.nav a.active {
+  background-color: #fff;
+  color: #444;
+  cursor: default;
+}
+
+p{
+    font-family: verdana;
+    font-size: 12px;
 
 
 .page-header {
@@ -19,4 +57,3 @@ p {
     margin-top: 0;
     padding: 20px 20px 20px 40px;
 }
-

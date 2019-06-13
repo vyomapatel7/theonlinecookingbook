@@ -71,7 +71,7 @@ def create_profile(request):
             return redirect(reverse('edit_profile', kwargs={'id': profile.id }))
         if form.is_valid():
             profile = form.save(commit=False)
-            profile.user = request.user()
+            profile.user = request.user
             profile.save()
             return redirect('home')
     else:
