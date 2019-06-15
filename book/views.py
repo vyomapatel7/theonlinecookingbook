@@ -85,13 +85,10 @@ def create_profile(request):
     })
 
 def create_book(request):
-    book = Book.objects.all()
+    book = Book.objects.get(user=request.user)
     form_class = BookForm
     if request.method == 'POST':
         form = form_class(request.POST)
-        if Profile.objects.filter(user=request.user).exists():
-            profile = Profile.objects.get(user=request.user)
-            return redirect(reverse('edit_profile', kwargs={'id': profile.id }))
         if form.is_valid():
             profile = form.save(commit=False)
             profile.user = request.user

@@ -22,7 +22,7 @@ class Book(models.Model):
     text = models.TextField()
     created_date = models.DateTimeField(default=timezone.now)
     published_date = models.DateTimeField(blank=True, null=True)
-    author = models.ForeignKey(Profile, on_delete=models.CASCADE, null=True, blank=True)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, default='fake')
 
     def publish(self):
         self.published_date = timezone.now()
