@@ -1,8 +1,10 @@
 from django.shortcuts import render, redirect
 from book.forms import ProfileForm
+from book.forms import BookForm
 from PIL import Image
 from .models import Profile
 from django.template.defaultfilters import slugify
+from .models import Book
 
 profiles = [
     {
@@ -80,4 +82,25 @@ def create_profile(request):
     return render(request, 'book/create_profile.html', {
         'form': form,
         'profile': profile,
+    })
+
+def create_book(request):
+    book = Book.objects.all()
+    form_class = BookForm
+    if request.method == 'POST':
+        form = form_class(request.POST)
+        if Profile.objects.filter(user=request.user).exists():
+            profile = Profile.objects.get(user=request.user)
+            return redirect(reverse('edit_profile', kwargs={'id': profile.id }))
+        if form.is_valid():
+            profile = form.save(commit=False)
+            profile.user = request.user
+            profile.save()
+            return redirect('home')
+    else:
+        form = form_class(instance=book)
+
+    return render(request, 'book/create_book.html', {
+        'form': form,
+        'book': book,
     })

@@ -9,6 +9,12 @@
         <a href="{% url 'edit_profile' id=profile.id %}"> Edit me! </a>
         <p> <img src="{{ profile.image.url }}", style= "width:100px;"/> </p>
     </div>
+
+    <div class= "book">
+    	<p> title {{ book.title }} </p>
+    	<p> text {{ book.text }} </p>
+    	<a href="{% url 'create_book' %}"> Edit post! </a>
+    </div>
 {% endblock content %}
 </body>
 </html>
