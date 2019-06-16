@@ -6,7 +6,6 @@
 	<h1>Share a recipe</h1>
 	<form role="form" action="" method="post">
 		{% csrf_token %}
-		{{ form.as_p }}
 		<input type="submit" value="Submit" />
 	</form>
 {% endblock content %}

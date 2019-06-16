@@ -11,6 +11,14 @@ h1{
     color: white; 
     padding: 50px;
     font-family: lobster;
+}
+
+h2{
+    text-align: center;
+    background-color: orange;
+    color: white; 
+    padding: 20px;
+    font-family: lobster;
 
 }
 

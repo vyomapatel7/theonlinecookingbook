@@ -2,3 +2,4 @@ Django==2.0.13
 django-registration-redux==2.0
 Pillow==6.0.0
 pytz==2018.9
+psycopg2==2.7.2

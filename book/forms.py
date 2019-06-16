@@ -5,7 +5,7 @@ from .models import Book
 class ProfileForm(ModelForm):
 	class Meta:
 		model = Profile
-		fields = ('bio',)
+		fields = ('bio', 'image',)
 
 class BookForm(ModelForm):
 	class Meta:
