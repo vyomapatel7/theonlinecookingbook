@@ -76,6 +76,20 @@ def create_profile(request):
             profile.user = request.user
             profile.save()
             return redirect('home')
+    # grab the data from the submitted form and apply to
+    # the form
+        form = form_class(request.POST)
+        if Profile.objects.get(user=request.user):
+            if form.is_valid():
+            # create an instance but do not save yet
+                profile = form.save(commit=False)
+                # set the additional details
+                profile.user = request.user
+                # save the object
+                profile.save()
+                # redirect to our newly created thing
+                return redirect('profile_detail')
+                # otherwise just create the form
     else:
         form = form_class(instance=profile)
 
@@ -85,7 +99,6 @@ def create_profile(request):
     })
 
 def create_book(request):
-    book = Book.objects.get(user=request.user)
     form_class = BookForm
     if request.method == 'POST':
         form = form_class(request.POST)
@@ -94,8 +107,9 @@ def create_book(request):
             profile.user = request.user
             profile.save()
             return redirect('home')
-    else:
-        form = form_class(instance=book)
+
+    else:      
+        form = form_class()
 
     return render(request, 'book/create_book.html', {
         'form': form,
