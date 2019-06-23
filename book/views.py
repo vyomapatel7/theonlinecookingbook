@@ -103,9 +103,9 @@ def create_book(request):
     if request.method == 'POST':
         form = form_class(request.POST)
         if form.is_valid():
-            profile = form.save(commit=False)
-            profile.user = request.user
-            profile.save()
+            book = form.save(commit=False)
+            book.user = request.user
+            book.save()
             return redirect('home')
 
     else:      

@@ -1,13 +1,2 @@
-{% extends 'book/base.html' %}
-{% block title %}
-	Edit {{ book.name }} - {{ block.super }}
-{% endblock title %} 
-{% block content %}
-	<h1>Edit blog "{{ blog.title }}"</h1>
-	<form role="form" action="" method="post">
-		{% csrf_token %}
-		{{ form.as_b }}
-		<button type="submit">Submit</button>
-	</form>
-{% endblock %}
+
 	
