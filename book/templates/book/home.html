@@ -11,7 +11,6 @@
     	<div class= "box">
         	<h2> Recipes by <a href="{% url 'profile' id=profile.id %}"> {{ profile.user }} </a> </h2>
         	<p> About me: {{ profile.bio }} </p>
-        	<p> Based in: {{ profile.location }} </p>
         	<p> <img src="{{ profile.image.url }}", style= "width:100px;"/> </p>
         	<a href="{% url 'edit_profile' id=profile.id %}"> Edit me! </a>
         	<p>{{ post.text|linebreaksbr }}</p>
