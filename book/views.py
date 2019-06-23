@@ -34,8 +34,10 @@ def about(request):
 
 def profile(request, id):
     profile = Profile.objects.get(id=id)
+    books = Book.objects.filter(user=profile.user)
     context = {
-        'profile': profile
+        'profile': profile,
+        'books': books
     }
     return render(request, 'book/profile.html', context)
 
@@ -104,7 +106,7 @@ def create_book(request):
         form = form_class(request.POST)
         if form.is_valid():
             book = form.save(commit=False)
-            book.user = request.user
+            profile.user = request.user
             book.save()
             return redirect('home')
 
