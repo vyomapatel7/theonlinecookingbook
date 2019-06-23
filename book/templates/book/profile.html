@@ -9,7 +9,7 @@
         <a href="{% url 'edit_profile' id=profile.id %}"> Edit me! </a>
         <p> <img src="{{ profile.image.url }}", style= "width:100px;"/> </p>
     </div>
-{% for books in books %}
+{% for book in books %}
     <div class= "book">
     	<p> Recipe title {{ book.title }} </p>
     	<p> Recipe description {{ book.text }} </p>

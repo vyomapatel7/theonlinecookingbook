@@ -108,7 +108,8 @@ def create_book(request):
             book = form.save(commit=False)
             book.user = request.user
             book.save()
-            return redirect('profile')
+            profile = Profile.objects.get(user=request.user)
+            return redirect('profile', id=profile.id)
 
     else:      
         form = form_class()
